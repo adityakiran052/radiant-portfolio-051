@@ -1,41 +1,18 @@
 import { motion } from "framer-motion";
 import SocialLinks from "./SocialLinks";
 import { MapPin, Phone, Mail } from "lucide-react";
-import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0a0a0a]">
-      {/* Animated background circles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full mix-blend-screen filter blur-xl opacity-30"
-          animate={{
-            x: mousePosition.x * 0.02 * (i % 2 ? 1 : -1),
-            y: mousePosition.y * 0.02 * (i % 2 ? 1 : -1),
-          }}
-          style={{
-            width: `${Math.random() * 300 + 50}px`,
-            height: `${Math.random() * 300 + 50}px`,
-            background: `radial-gradient(circle, 
-              hsl(${Math.random() * 360}, 70%, 50%),
-              hsl(${Math.random() * 360}, 70%, 50%))`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-        />
-      ))}
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-[#0a0a0a]">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
+          <div className="absolute top-0 -right-4 w-96 h-96 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
+          <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
+        </div>
+      </div>
 
       <div className="container max-w-6xl mx-auto px-4 relative z-10">
         <div className="text-center">
