@@ -1,16 +1,42 @@
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { useState } from "react";
+import SkillChart from "./SkillChart";
 
 const skills = {
-  Languages: ["C++", "Python", "C", "HTML", "CSS", "JavaScript", "SQL"],
-  "Frameworks/Libraries": ["Pandas", "NumPy", "Matplotlib", "Node.js", "PowerBI", "Apache"],
-  Technologies: ["Linux", "Xampp", "JavaServer Pages (JSP)", "Object-Oriented Programming"],
-  Tools: ["VS Code", "Eclipse", "GitHub"],
+  Languages: {
+    "C++": 85,
+    "Python": 90,
+    "C": 80,
+    "HTML": 95,
+    "CSS": 85,
+    "JavaScript": 88,
+    "SQL": 82
+  },
+  "Frameworks/Libraries": {
+    "Pandas": 85,
+    "NumPy": 80,
+    "Matplotlib": 75,
+    "Node.js": 78,
+    "PowerBI": 70,
+    "Apache": 65
+  },
+  Technologies: {
+    "Linux": 85,
+    "Xampp": 75,
+    "JavaServer Pages (JSP)": 70,
+    "Object-Oriented Programming": 90
+  },
+  Tools: {
+    "VS Code": 95,
+    "Eclipse": 80,
+    "GitHub": 85
+  }
 };
 
 const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState("Languages");
 
   return (
     <section id="skills" className="section-padding bg-[#0a0a0a] relative overflow-hidden">
@@ -43,50 +69,44 @@ const Skills = () => {
             Technical Skills
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            A comprehensive set of technical skills and tools I've mastered throughout my journey.
+            A comprehensive visualization of my technical expertise and proficiency levels.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {Object.entries(skills).map(([category, items], index) => (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="p-6 h-full bg-purple-900/10 backdrop-blur-lg border-purple-500/20 hover:shadow-[0_0_30px_rgba(147,51,234,0.2)] transition-all duration-300">
-                <h3 className="text-xl font-semibold mb-4 text-purple-400">{category}</h3>
-                <div className="flex flex-wrap gap-3">
-                  {items.map((skill, skillIndex) => (
-                    <motion.span
-                      key={skillIndex}
-                      className="px-4 py-2 rounded-full bg-purple-900/30 text-purple-300 text-sm font-medium cursor-pointer relative"
-                      onMouseEnter={() => setHoveredSkill(skill)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      whileHover={{ scale: 1.1 }}
-                      animate={{
-                        boxShadow: hoveredSkill === skill
-                          ? "0 0 20px rgba(147,51,234,0.5)"
-                          : "0 0 0px rgba(147,51,234,0)",
-                      }}
-                    >
-                      {skill}
-                      {hoveredSkill === skill && (
-                        <motion.div
-                          className="absolute -inset-1 rounded-full border border-purple-500"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.8 }}
-                        />
-                      )}
-                    </motion.span>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Category Selection */}
+          <div className="lg:col-span-1">
+            <Card className="p-6 bg-purple-900/10 backdrop-blur-lg border-purple-500/20">
+              <h3 className="text-xl font-semibold mb-4 text-purple-400">Categories</h3>
+              <div className="flex flex-col gap-2">
+                {Object.keys(skills).map((category) => (
+                  <motion.button
+                    key={category}
+                    className={`px-4 py-2 rounded-lg text-left transition-all ${
+                      selectedCategory === category
+                        ? "bg-purple-500/30 text-purple-200"
+                        : "hover:bg-purple-500/20 text-purple-300"
+                    }`}
+                    onClick={() => setSelectedCategory(category)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {category}
+                  </motion.button>
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          {/* Skill Chart */}
+          <div className="lg:col-span-2">
+            <Card className="p-6 h-full bg-purple-900/10 backdrop-blur-lg border-purple-500/20">
+              <h3 className="text-xl font-semibold mb-4 text-purple-400">{selectedCategory}</h3>
+              <div className="h-[400px]">
+                <SkillChart skills={skills[selectedCategory as keyof typeof skills]} />
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
