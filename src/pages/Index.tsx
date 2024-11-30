@@ -5,7 +5,6 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
-import FloatingNav from "@/components/FloatingNav";
 
 const Index = () => {
   useEffect(() => {
@@ -19,7 +18,6 @@ const Index = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen relative"
     >
-      <FloatingNav />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
