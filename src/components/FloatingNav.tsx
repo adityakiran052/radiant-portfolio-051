@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
 
 const FloatingNav = () => {
   return (
@@ -10,7 +9,6 @@ const FloatingNav = () => {
       className="floating-nav"
     >
       <div className="flex items-center gap-6">
-        <ThemeToggle />
       </div>
     </motion.nav>
   );
