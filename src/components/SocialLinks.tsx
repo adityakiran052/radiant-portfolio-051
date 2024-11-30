@@ -11,7 +11,7 @@ const SocialLinks = () => {
         asChild
       >
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/adityakiran052"
           target="_blank"
           rel="noopener noreferrer"
           className="text-foreground"
@@ -26,7 +26,7 @@ const SocialLinks = () => {
         asChild
       >
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://linkedin.com/in/aditya-kiran-a9b748239"
           target="_blank"
           rel="noopener noreferrer"
           className="text-foreground"
@@ -41,7 +41,7 @@ const SocialLinks = () => {
         asChild
       >
         <a
-          href="mailto:your.email@example.com"
+          href="mailto:joyaditya04@gmail.com"
           className="text-foreground"
         >
           <Mail className="h-5 w-5" />

@@ -1,32 +1,38 @@
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
+import { GraduationCap, Award } from "lucide-react";
 
 const timelineData = [
   {
-    year: "2023",
+    year: "2022 - Present",
     title: "MIT World Peace University",
-    description: "Bachelor's in Computer Science",
+    description: "BTech in Computer Science (AI and Data Science)",
+    details: "CGPA: 8.78/10",
+    icon: GraduationCap,
   },
   {
-    year: "2022",
+    year: "2021 - 2022",
     title: "Montfort Academy",
-    description: "High School Diploma",
+    description: "HSC: 86%, JEE Mains 2023: 91%ile",
+    icon: GraduationCap,
   },
   {
-    year: "2022",
+    year: "2021 - 2022",
     title: "Head Boy",
     description: "Student Leadership Role",
+    icon: Award,
   },
   {
     year: "2024",
     title: "RIDE'24 Volunteer",
-    description: "Community Service",
+    description: "MIT-WPU Community Service",
+    icon: Award,
   },
 ];
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-secondary/50">
+    <section id="about" className="section-padding bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,11 +41,10 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold mb-4">About Me</h2>
+          <h2 className="text-3xl font-bold mb-4">Education & Leadership</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            I'm passionate about leveraging technology to solve real-world problems.
-            My journey in computer science has equipped me with both technical skills
-            and leadership experience.
+            Pursuing Computer Science with a focus on AI and Data Science, while actively
+            participating in leadership roles and community service.
           </p>
         </motion.div>
 
@@ -52,12 +57,22 @@ const About = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <div className="text-sm font-medium text-muted-foreground mb-2">
-                  {item.year}
+              <Card className="p-6 hover:shadow-lg transition-shadow bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 rounded-full bg-primary/10">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-muted-foreground">
+                      {item.year}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
+                    {item.details && (
+                      <p className="text-sm text-primary mt-1">{item.details}</p>
+                    )}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
               </Card>
             </motion.div>
           ))}

@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import SocialLinks from "./SocialLinks";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="text-center">
           <motion.div
@@ -34,6 +35,26 @@ const Hero = () => {
           >
             Aspiring Computer Scientist | AI & Data Enthusiast
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground"
+          >
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              <span>Pune, Maharashtra</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              <span>+91 9508557835</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              <span>joyaditya04@gmail.com</span>
+            </div>
+          </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
