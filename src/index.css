@@ -27,6 +27,28 @@
     --ring: 240 5.9% 10%;
     --radius: 0.75rem;
   }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
 }
 
 @layer base {
@@ -94,4 +116,44 @@ html {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Project card hover effects */
+.project-card {
+  @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg;
+}
+
+/* Loading animation */
+.loading-spinner {
+  @apply animate-spin rounded-full border-4 border-purple-500 border-t-transparent h-8 w-8;
+}
+
+/* Floating navigation */
+.floating-nav {
+  @apply fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
+         backdrop-blur-lg bg-black/30 rounded-full px-6 py-3
+         border border-purple-500/20;
 }
